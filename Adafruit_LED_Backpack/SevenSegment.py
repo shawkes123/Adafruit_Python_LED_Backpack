@@ -176,9 +176,11 @@ class SevenSegment(HT16K33.HT16K33):
         if length > 4:
             self.print_number_str('----')
             return
-        # Calculcate starting position of digits based on justification.
-        pos = (4-length) if justify_right else 0
+        # pad the digits with blanks
+        blanks = " " * (4 - length)
+        value = blanks+value if justify_right else value+blanks
         # Go through each character and print it on the display.
+        pos = 0
         for i, ch in enumerate(value):
             if ch == '.':
                 # Print decimal points on the previous digit.
